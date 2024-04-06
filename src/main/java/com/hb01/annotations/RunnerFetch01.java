@@ -5,6 +5,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class RunnerFetch01 {
 
     public static void main(String[] args) {
@@ -49,14 +51,38 @@ public class RunnerFetch01 {
         System.out.println(Arrays.toString(uniqueResult1));
         System.out.println(uniqueResult1[0] + " : " + uniqueResult1[1] + " : " + uniqueResult1[2]);*/
         // !!! Ayni sorguyu HQL ile yazalim :
-        String hqlQuery2 = "FROM Student01 WHERE name='Dogu Bey'";
-        Student01 uniqueResult2 =  session.createQuery(hqlQuery2, Student01.class).uniqueResult();
-        System.out.println(uniqueResult2);
+//        String hqlQuery2 = "FROM Student01 WHERE name='Dogu Bey'";
+//        Student01 uniqueResult2 =  session.createQuery(hqlQuery2, Student01.class).uniqueResult();
+//        System.out.println(uniqueResult2);
 
+        // HQL --> grade degeri 70 olan ogrencileri getirelim
+//        String hqlQuery3 = "SELECT s.id,s.name FROM Student01 s WHERE s.grade=70";
+//        List<Object[]> resultList3 = session.createQuery(hqlQuery3).getResultList();
+//        for(Object[] objects : resultList3){
+//            System.out.println(Arrays.toString(objects));
+//        }
+
+        // id ye gore azalan sirali listeyi gorelim
+        String hqlQuery4 = "FROM Student01 s ORDER BY s.id DESC";
+        List<Student01> resultList4 = session.createQuery(hqlQuery4, Student01.class).getResultList();
+        for(Student01 student01 : resultList4){
+            System.out.println(student01);
+        }
 
         tx.commit();
         session.close();
         sf.close();
+
+        // !!! get - SQL - HQL Hangisini tercih etmem gerekir ?
+        /*
+                1. get
+                2. HQL
+                3. SQL
+
+                        *   Native SQL hizli olsada eksi yonleri :
+		        1) bazi DB'lerde sql syntax'in farkliliklar olabiliyor, Native SQL burada sorun olabilir
+		        2) String yapilarin hataya acik olmasi
+         */
 
     }
 }

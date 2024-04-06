@@ -21,6 +21,46 @@ public class Student01 { // student01
     // kullanılmak için bir değişken oluştururuz ama bu sınıf DB ye kaydedileceği
     // zaman ilgili tabloya kolon olarak eklenmez
     //@Transient
-    private int grade;
+    private int grade; // 70
 
+//    @Lob // large object ile buyuk datalar tutuluyor
+//    private byte[] image;
+
+    //Not: Getter - Setter *******************************************
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+
+    // Not: toString ********************************************
+
+    @Override
+    public String toString() {
+        return "Student01{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", grade=" + grade +
+                '}';
+    }
 }

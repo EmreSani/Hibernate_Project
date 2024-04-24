@@ -85,6 +85,4 @@ public class Student11 {
                 ", mathGrade=" + mathGrade +
                 '}';
     }
-
-    //try
 }
